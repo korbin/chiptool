@@ -197,6 +197,7 @@ fn sanitize_path(p: &str) -> String {
 mod common;
 
 pub mod delete;
+pub mod delete_duplicate_enum_fields;
 pub mod delete_enums;
 pub mod delete_enums_used_in;
 pub mod delete_fieldsets;
@@ -223,6 +224,7 @@ pub enum Transform {
     Delete(delete::Delete),
     DeleteEnums(delete_enums::DeleteEnums),
     DeleteEnumsUsedIn(delete_enums_used_in::DeleteEnumsUsedIn),
+    DeleteDuplicateEnumFields(delete_duplicate_enum_fields::DeleteDuplicateEnumFields),
     DeleteFieldsets(delete_fieldsets::DeleteFieldsets),
     MergeBlocks(merge_blocks::MergeBlocks),
     MergeEnums(merge_enums::MergeEnums),
@@ -247,6 +249,7 @@ impl Transform {
             Self::Delete(t) => t.run(ir),
             Self::DeleteEnums(t) => t.run(ir),
             Self::DeleteEnumsUsedIn(t) => t.run(ir),
+            Self::DeleteDuplicateEnumFields(t) => t.run(ir),
             Self::DeleteFieldsets(t) => t.run(ir),
             Self::MergeBlocks(t) => t.run(ir),
             Self::MergeEnums(t) => t.run(ir),
